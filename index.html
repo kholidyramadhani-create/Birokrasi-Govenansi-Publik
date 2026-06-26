@@ -1,0 +1,2965 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan Soal Birokrasi dan Governansi Publik</title>
+    <style>
+        /* ===== RESET & VARIABEL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f7fc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #dbeafe;
+            --success: #16a34a;
+            --success-light: #dcfce7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --gray: #94a3b8;
+            --gray-light: #f1f5f9;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.25s ease;
+        }
+
+        .dark {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border: #334155;
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --primary-light: #1e293b;
+            --success: #22c55e;
+            --success-light: #14532d;
+            --danger: #ef4444;
+            --danger-light: #7f1d1d;
+            --warning: #f59e0b;
+            --warning-light: #713f12;
+            --gray: #64748b;
+            --gray-light: #1e293b;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #app {
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            transition: background var(--transition), box-shadow var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background var(--transition), transform 0.15s, box-shadow var(--transition);
+            background: var(--gray-light);
+            color: var(--text);
+            text-decoration: none;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            background: var(--gray-light);
+        }
+
+        .btn-sm {
+            padding: 4px 12px;
+            font-size: 0.8rem;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+
+        .header-top h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .header-top h1 small {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-left: 8px;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .header-stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .header-stats .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+        .badge-success {
+            background: var(--success-light);
+            color: var(--success);
+        }
+        .badge-danger {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+        .badge-warning {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+        .badge-gray {
+            background: var(--gray-light);
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--gray-light);
+            border-radius: 99px;
+            overflow: hidden;
+            margin: 12px 0 4px;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 99px;
+            transition: width 0.4s ease;
+        }
+
+        .question-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 2px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--gray-light);
+            border-radius: var(--radius-sm);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: background var(--transition), border-color var(--transition), transform 0.15s;
+            font-size: 0.95rem;
+        }
+        .option:hover:not(.disabled) {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+        .option .letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            font-weight: 700;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .option .text {
+            flex: 1;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: var(--success-light);
+        }
+        .option.correct .letter {
+            background: var(--success);
+            border-color: var(--success);
+            color: #fff;
+        }
+
+        .option.wrong {
+            border-color: var(--danger);
+            background: var(--danger-light);
+        }
+        .option.wrong .letter {
+            background: var(--danger);
+            border-color: var(--danger);
+            color: #fff;
+        }
+
+        .option.disabled {
+            cursor: default;
+        }
+        .option.disabled:hover {
+            border-color: transparent;
+            transform: none;
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+        }
+
+        .feedback {
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            margin: 12px 0 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            display: none;
+        }
+        .feedback.show {
+            display: block;
+        }
+        .feedback.correct {
+            background: var(--success-light);
+            border-left: 4px solid var(--success);
+            color: var(--success);
+        }
+        .feedback.wrong {
+            background: var(--danger-light);
+            border-left: 4px solid var(--danger);
+            color: var(--danger);
+        }
+        .feedback .answer-reveal {
+            font-weight: 600;
+        }
+        .feedback .explanation {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: var(--text-secondary);
+        }
+
+        .question-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 8px;
+        }
+        .question-nav .qn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: var(--gray-light);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: background var(--transition), transform 0.15s;
+            border: 1.5px solid transparent;
+        }
+        .question-nav .qn:hover {
+            transform: scale(1.05);
+        }
+        .question-nav .qn.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .question-nav .qn.answered-correct {
+            background: var(--success);
+            color: #fff;
+        }
+        .question-nav .qn.answered-wrong {
+            background: var(--danger);
+            color: #fff;
+        }
+        .question-nav .qn.current {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .setup-grid label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .setup-grid select,
+        .setup-grid input {
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: border var(--transition);
+        }
+        .setup-grid select:focus,
+        .setup-grid input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .setup-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .mode-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 16px;
+        }
+        .mode-tabs .btn {
+            flex: 1;
+            min-width: 100px;
+            justify-content: center;
+        }
+        .mode-tabs .btn.active-mode {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .review-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .review-item:last-child {
+            border-bottom: none;
+        }
+        .review-item .r-num {
+            font-weight: 700;
+            min-width: 40px;
+            font-size: 0.9rem;
+        }
+        .review-item .r-q {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        .review-item .r-answer {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .review-item .r-answer.correct {
+            color: var(--success);
+        }
+        .review-item .r-answer.wrong {
+            color: var(--danger);
+        }
+
+        .review-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        /* ===== QRIS STYLING ===== */
+        .qris-section {
+            margin-top: 24px;
+            padding: 24px 20px 20px;
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, var(--surface), var(--gray-light));
+            border: 2px solid var(--border);
+            text-align: center;
+            transition: border-color var(--transition);
+        }
+        .qris-section:hover {
+            border-color: var(--primary);
+        }
+
+        .qris-section .qris-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .qris-section .qris-title .icon {
+            font-size: 1.3rem;
+        }
+
+        .qris-section .qris-image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 8px;
+            background: #fff;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 220px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .qris-section .qris-image-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .qris-section .qris-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 200px;
+            border-radius: calc(var(--radius-sm) - 2px);
+            background: #fff;
+        }
+
+        .qris-section .qris-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 99px;
+            margin: 10px auto 12px;
+            opacity: 0.4;
+        }
+
+        .qris-section .qris-caption {
+            margin-top: 6px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        .qris-section .qris-caption .highlight {
+            background: var(--primary-light);
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+        .qris-section .qris-sub {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            .qris-section {
+                padding: 18px 14px 16px;
+                margin-top: 18px;
+            }
+            .qris-section .qris-image-wrapper {
+                max-width: 160px;
+            }
+            .qris-section .qris-image {
+                max-width: 140px;
+            }
+            .qris-section .qris-caption {
+                font-size: 1.05rem;
+            }
+            .qris-section .qris-title {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .qris-section .qris-image-wrapper {
+                max-width: 130px;
+                padding: 6px;
+            }
+            .qris-section .qris-image {
+                max-width: 110px;
+            }
+            .qris-section .qris-caption {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ===== RESPONSIF ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+            .card {
+                padding: 16px;
+            }
+            .header-top h1 {
+                font-size: 1.2rem;
+            }
+            .header-stats {
+                font-size: 0.8rem;
+                gap: 10px;
+            }
+            .question-text {
+                font-size: 0.95rem;
+            }
+            .option {
+                font-size: 0.9rem;
+                padding: 10px 14px;
+            }
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+            .mode-tabs .btn {
+                min-width: 60px;
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            .question-nav .qn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        .result-score {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .result-detail {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .scroll-x {
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .theme-toggle:hover {
+            background: var(--gray-light);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <!-- ===== HEADER ===== -->
+        <div class="card">
+            <div class="header-top">
+                <h1>📘 Birokrasi &amp; Governansi Publik <small>135 Soal</small></h1>
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <span class="header-stats">
+                        <span id="progressText">0/0</span>
+                        <span>|</span>
+                        <span>✅ <span id="correctCount">0</span></span>
+                        <span>❌ <span id="wrongCount">0</span></span>
+                        <span>🎯 <span id="scorePercent">0%</span></span>
+                    </span>
+                    <button class="theme-toggle" id="themeToggle" title="Mode Gelap">🌙</button>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="fill" id="progressFill" style="width:0%"></div>
+            </div>
+        </div>
+
+        <!-- ===== SETUP ===== -->
+        <div class="card" id="setupPanel">
+            <div class="card-header">
+                <span class="card-title">⚙️ Pengaturan Latihan</span>
+                <span style="font-size:0.85rem;color:var(--text-secondary);">Total soal: <strong id="totalSoalDisplay">135</strong></span>
+            </div>
+
+            <div class="mode-tabs" id="modeTabs">
+                <button class="btn active-mode" data-mode="all">📚 Semua Soal</button>
+                <button class="btn" data-mode="count">🔢 Pilih Jumlah</button>
+                <button class="btn" data-mode="range">📏 Rentang</button>
+                <button class="btn" data-mode="pick">☑️ Pilih Tertentu</button>
+                <button class="btn" data-mode="random">🎲 Acak</button>
+            </div>
+
+            <div id="modeOptions"></div>
+
+            <div class="setup-actions">
+                <button class="btn btn-primary" id="startBtn">🚀 Mulai Latihan</button>
+                <button class="btn btn-outline" id="resetBtn">🔄 Mulai Ulang</button>
+            </div>
+
+            <div style="margin-top:12px;font-size:0.85rem;color:var(--text-secondary);">
+                💡 Pilih mode lalu klik "Mulai Latihan"
+            </div>
+            <div style="margin-top:8px;">
+                <label style="display:flex;align-items:center;gap:8px;font-size:0.9rem;cursor:pointer;">
+                    <input type="checkbox" id="examModeCheck">
+                    🎯 Mode Ujian (hasil &amp; pembahasan di akhir)
+                </label>
+            </div>
+
+            <!-- ===== QRIS SECTION ===== -->
+            <div class="qris-section">
+                <div class="qris-title">
+                    <span class="icon">💳</span> Dukung Perjalanan Ibadah
+                </div>
+                <div class="qris-image-wrapper">
+                    <img src="IMG_2166.PNG" alt="QRIS Gasan Naik Haji" class="qris-image" />
+                </div>
+                <div class="qris-divider"></div>
+                <div class="qris-caption">
+                    <span class="highlight">Gasan Naik Haji</span>
+                </div>
+                <div class="qris-sub">🔹 Scan QRIS untuk berdonasi 🔹</div>
+            </div>
+        </div>
+
+        <!-- ===== PANEL SOAL ===== -->
+        <div class="card hidden" id="questionPanel">
+            <div class="flex-between mb-8">
+                <div>
+                    <span class="question-number" id="qNumDisplay">Soal 1</span>
+                    <span style="margin-left:8px;font-size:0.85rem;color:var(--text-secondary);" id="qIndexDisplay">1 / 135</span>
+                </div>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn btn-sm btn-outline" id="prevBtn">◀ Sebelum</button>
+                    <button class="btn btn-sm btn-outline" id="nextBtn">Berikut ▶</button>
+                </div>
+            </div>
+
+            <div class="question-text" id="questionText">Loading...</div>
+
+            <div class="options" id="optionsContainer"></div>
+
+            <div class="feedback" id="feedback">
+                <div class="answer-reveal" id="feedbackAnswer"></div>
+                <div class="explanation" id="feedbackExplanation"></div>
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+                <button class="btn btn-success" id="nextQuestionBtn" disabled>➡️ Soal Berikutnya</button>
+                <button class="btn btn-outline" id="reviewToggleBtn">📋 Review</button>
+                <button class="btn btn-outline" id="restartFromQuestionBtn" style="color:var(--danger);border-color:var(--danger);">🔄 Mulai Ulang Latihan</button>
+            </div>
+
+            <div class="scroll-x mt-12">
+                <div class="question-nav" id="questionNav"></div>
+            </div>
+        </div>
+
+        <!-- ===== PANEL REVIEW ===== -->
+        <div class="card hidden" id="reviewPanel">
+            <div class="card-header">
+                <span class="card-title">📋 Review Jawaban</span>
+                <button class="btn btn-sm btn-outline" id="closeReviewBtn">✕ Tutup</button>
+            </div>
+            <div class="review-filter">
+                <button class="btn btn-sm btn-outline active-review-filter" data-filter="all">Semua</button>
+                <button class="btn btn-sm btn-outline" data-filter="correct">✅ Benar</button>
+                <button class="btn btn-sm btn-outline" data-filter="wrong">❌ Salah</button>
+                <button class="btn btn-sm btn-outline" data-filter="unanswered">⬜ Belum</button>
+            </div>
+            <div id="reviewList"></div>
+        </div>
+
+        <!-- ===== PANEL HASIL ===== -->
+        <div class="card hidden" id="resultPanel">
+            <div class="text-center">
+                <div style="font-size:3rem;margin-bottom:8px;">🏆</div>
+                <div class="result-score" id="finalScore">0%</div>
+                <div class="result-detail">
+                    ✅ Benar: <span id="finalCorrect">0</span> &nbsp;|&nbsp; ❌ Salah: <span id="finalWrong">0</span>
+                </div>
+                <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                    <button class="btn btn-primary" id="retryWrongBtn">🔁 Kerjakan Ulang Soal Salah</button>
+                    <button class="btn btn-outline" id="resultResetBtn">🔄 Mulai Ulang</button>
+                </div>
+                <div style="margin-top:20px;">
+                    <button class="btn btn-outline" id="resultReviewBtn">📋 Lihat Review</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  1.  DATA SOAL (135 SOAL) – BIROKRASI & GOVERNANSI PUBLIK
+        // ============================================================
+        const MASTER_QUESTIONS = [{
+            id: 1,
+            question: "Teori sosial yang membahas tentang kehidupan masyarakat modern disebut …",
+            options: [
+                "A. Teori sosial tradisional",
+                "B. Teori sosial perkembangan",
+                "C. Teori sosial kehidupan masyarakat modern",
+                "D. Teori sosial perubahan"
+            ],
+            correct: 2,
+            explanation: "Teori sosial kehidupan masyarakat modern"
+        }, {
+            id: 2,
+            question: "Konsep yang merujuk pada pengakuan dan penerimaan masyarakat terhadap kekuasaan yang sah disebut …",
+            options: [
+                "A. Otoritas",
+                "B. Legitimasi",
+                "C. Kekuasaan",
+                "D. Dominasi"
+            ],
+            correct: 1,
+            explanation: "Legitimasi"
+        }, {
+            id: 3,
+            question: "Pandangan bahwa hukum merupakan sistem aturan yang bersifat abstrak dan diterapkan pada kasus-kasus tertentu menyatakan bahwa …",
+            options: [
+                "A. Hukum adalah sistem aturan konkret",
+                "B. Hukum merupakan sistem aturan abstrak yang diterapkan pada kasus-kasus tertentu",
+                "C. Hukum adalah aturan yang tidak mengikat",
+                "D. Hukum hanya berlaku untuk kasus tertentu"
+            ],
+            correct: 1,
+            explanation: "Bahwa hukum merupakan sistem aturan abstrak yang diterapkan pada kasus-kasus tertentu"
+        }, {
+            id: 4,
+            question: "Suatu tindakan dikatakan baik jika …",
+            options: [
+                "A. sulit dilakukan",
+                "B. mudah dilakukan",
+                "C. memerlukan biaya tinggi",
+                "D. melibatkan banyak orang"
+            ],
+            correct: 1,
+            explanation: "mudah dilakukan"
+        }, {
+            id: 5,
+            question: "Birokrasi yang ideal ditandai dengan aturan yang …",
+            options: [
+                "A. longgar dan fleksibel",
+                "B. ketat dan sistematis",
+                "C. sederhana dan informal",
+                "D. tidak tertulis"
+            ],
+            correct: 1,
+            explanation: "ketat dan sistematis"
+        }, {
+            id: 6,
+            question: "Ciri organisasi birokrasi yang modern adalah …",
+            options: [
+                "A. hubungan hierarki datar",
+                "B. hubungan hierarki panjang",
+                "C. hubungan vertikal kaku",
+                "D. hubungan horizontal longgar"
+            ],
+            correct: 0,
+            explanation: "hubungan hierarki datar"
+        }, {
+            id: 7,
+            question: "Sistem birokrasi telah dikenal sejak …",
+            options: [
+                "A. 165 Masehi",
+                "B. 165 sebelum Masehi",
+                "C. 1650 Masehi",
+                "D. 1650 sebelum Masehi"
+            ],
+            correct: 1,
+            explanation: "165 sebelum Masehi"
+        }, {
+            id: 8,
+            question: "Salah satu pilar utama birokrasi adalah …",
+            options: [
+                "A. nepotisme",
+                "B. kronisme",
+                "C. profesionalitas",
+                "D. patronase"
+            ],
+            correct: 2,
+            explanation: "profesionalitas"
+        }, {
+            id: 9,
+            question: "Dalam birokrasi, istilah 'biro' merujuk pada …",
+            options: [
+                "A. Kursi",
+                "B. Meja tulis",
+                "C. Ruang rapat",
+                "D. Lemari arsip"
+            ],
+            correct: 1,
+            explanation: "Meja tulis"
+        }, {
+            id: 10,
+            question: "Salah satu prinsip birokrasi modern adalah …",
+            options: [
+                "A. Mempromosikan staf berdasarkan kedekatan dengan pimpinan",
+                "B. Mempromosikan staf berdasarkan senioritas",
+                "C. Mempromosikan staf berdasarkan sistem merit",
+                "D. Mempromosikan staf berdasarkan asal daerah"
+            ],
+            correct: 2,
+            explanation: "Mempromosikan staf berdasarkan sistem merit"
+        }, {
+            id: 11,
+            question: "Permasalahan dalam birokrasi sering kali disebabkan oleh …",
+            options: [
+                "A. kurangnya anggaran",
+                "B. banyaknya pegawai",
+                "C. banyaknya permasalahan hak istimewa (privilege)",
+                "D. terlalu banyak aturan"
+            ],
+            correct: 2,
+            explanation: "banyaknya permasalahan hak istimewa (privilege)"
+        }, {
+            id: 12,
+            question: "Dalam administrasi publik, istilah 'publik' berarti …",
+            options: [
+                "A. Khusus",
+                "B. Terbatas",
+                "C. Pribadi",
+                "D. Umum"
+            ],
+            correct: 3,
+            explanation: "Umum"
+        }, {
+            id: 13,
+            question: "Birokrasi merupakan bentuk …",
+            options: [
+                "A. Komunitas",
+                "B. Kelompok",
+                "C. Organisasi",
+                "D. Institusi sosial"
+            ],
+            correct: 2,
+            explanation: "Organisasi"
+        }, {
+            id: 14,
+            question: "Perbedaan utama organisasi publik dan swasta adalah …",
+            options: [
+                "A. Organisasi publik lebih efisien",
+                "B. Organisasi publik lebih inovatif",
+                "C. Organisasi publik lebih fleksibel",
+                "D. Organisasi publik cenderung tidak terlalu dipengaruhi oleh pesaing"
+            ],
+            correct: 3,
+            explanation: "Organisasi publik cenderung tidak terlalu dipengaruhi oleh pesaing"
+        }, {
+            id: 15,
+            question: "Budaya organisasi yang khas pada birokrasi disebut …",
+            options: [
+                "A. Budaya umum",
+                "B. Budaya nasional",
+                "C. Spesifik organisasi",
+                "D. Budaya lokal"
+            ],
+            correct: 2,
+            explanation: "Spesifik organisasi"
+        }, {
+            id: 16,
+            question: "Salah satu ciri birokrasi yang buruk adalah …",
+            options: [
+                "A. Tidak profesional",
+                "B. Profesional",
+                "C. Transparan",
+                "D. Akuntabel"
+            ],
+            correct: 0,
+            explanation: "Tidak profesional"
+        }, {
+            id: 17,
+            question: "Tujuan utama sistem penghargaan dan sanksi dalam birokrasi adalah …",
+            options: [
+                "A. Untuk meningkatkan gaji pegawai",
+                "B. Untuk memastikan pelaksanaan sistem penghargaan dan sanksi berjalan secara adil dan konsisten",
+                "C. Untuk mengurangi jumlah pegawai",
+                "D. Untuk meningkatkan anggaran"
+            ],
+            correct: 1,
+            explanation: "Untuk memastikan pelaksanaan sistem penghargaan dan sanksi berjalan secara adil dan konsisten"
+        }, {
+            id: 18,
+            question: "Akibat dari tidak terinternalisasinya nilai-nilai antikorupsi dalam birokrasi adalah …",
+            options: [
+                "A. Birokrasi menjadi lebih efisien",
+                "B. Nilai-nilai antikorupsi tidak terinternalisasi, sehingga menghambat birokrasi yang bersih dan akuntabel",
+                "C. Birokrasi menjadi lebih transparan",
+                "D. Birokrasi menjadi lebih profesional"
+            ],
+            correct: 1,
+            explanation: "Nilai-nilai antikorupsi tidak terinternalisasi, sehingga menghambat birokrasi yang bersih dan akuntabel"
+        }, {
+            id: 19,
+            question: "Sistem sosial yang mempengaruhi birokrasi mencakup …",
+            options: [
+                "A. Hanya struktur organisasi",
+                "B. Sistem sosial, nilai, sikap, dan pola perilaku masyarakat",
+                "C. Hanya aturan formal",
+                "D. Hanya kebijakan pemerintah"
+            ],
+            correct: 1,
+            explanation: "Sistem sosial, nilai, sikap, dan pola perilaku masyarakat"
+        }, {
+            id: 20,
+            question: "Masyarakat sipil mulai mengambil peran dalam perubahan sosial karena …",
+            options: [
+                "A. Pemerintah tidak peduli",
+                "B. Birokrasi terlalu kuat",
+                "C. Karena masyarakat sipil seperti LSM, parpol, dan intelektual mulai mengambil alih peran perubahan sosial",
+                "D. Tidak ada alternatif lain"
+            ],
+            correct: 2,
+            explanation: "Karena masyarakat sipil seperti LSM, parpol, dan intelektual mulai mengambil alih peran perubahan sosial"
+        }, {
+            id: 21,
+            question: "Perubahan dalam sistem sosial masyarakat dapat terjadi apabila …",
+            options: [
+                "A. Sistem sosial dalam masyarakat tersebut dapat berubah",
+                "B. Sistem sosial bersifat statis",
+                "C. Tidak ada perubahan yang diinginkan",
+                "D. Masyarakat menolak perubahan"
+            ],
+            correct: 0,
+            explanation: "Sistem sosial dalam masyarakat tersebut dapat berubah"
+        }, {
+            id: 22,
+            question: "Peran birokrasi dalam pembangunan nasional adalah …",
+            options: [
+                "A. Menghambat pembangunan",
+                "B. Mengarahkan dan membentuk kelembagaan baru untuk mendukung program pembangunan nasional",
+                "C. Hanya sebagai pelaksana perintah",
+                "D. Tidak terlibat dalam pembangunan"
+            ],
+            correct: 1,
+            explanation: "Mengarahkan dan membentuk kelembagaan baru untuk mendukung program pembangunan nasional"
+        }, {
+            id: 23,
+            question: "Perubahan dari feodalisme menuju demokrasi parlementer yang menjunjung kesetaraan adalah contoh …",
+            options: [
+                "A. Perubahan lambat",
+                "B. Feodalisme menuju sistem demokrasi parlementer yang menjunjung kesetaraan",
+                "C. Perubahan tidak berarti",
+                "D. Perubahan stagnan"
+            ],
+            correct: 1,
+            explanation: "Feodalisme menuju sistem demokrasi parlementer yang menjunjung kesetaraan"
+        }, {
+            id: 24,
+            question: "Kritik terhadap birokrasi muncul karena …",
+            options: [
+                "A. Birokrasi terlalu efisien",
+                "B. Birokrasi terlalu transparan",
+                "C. Melemahnya kedudukan birokrasi karena kritik terhadap sikap feodal dan rendahnya kesejahteraan pegawai",
+                "D. Birokrasi terlalu profesional"
+            ],
+            correct: 2,
+            explanation: "Melemahnya kedudukan birokrasi karena kritik terhadap sikap feodal dan rendahnya kesejahteraan pegawai"
+        }, {
+            id: 25,
+            question: "Penyakit-penyakit dalam birokrasi mencakup …",
+            options: [
+                "A. Hanya masalah besar",
+                "B. Penyakit-penyakit dalam birokrasi, baik skala kecil maupun besar",
+                "C. Hanya masalah kecil",
+                "D. Tidak ada masalah"
+            ],
+            correct: 1,
+            explanation: "Penyakit-penyakit dalam birokrasi, baik skala kecil maupun besar"
+        }, {
+            id: 26,
+            question: "Kesalahan dalam birokrasi sulit diperbaiki karena …",
+            options: [
+                "A. Tidak ada yang peduli",
+                "B. Kesalahan terlalu kecil",
+                "C. Tidak ada sanksi",
+                "D. Karena kesalahan tersebut telah menjadi bagian dari sistem dan pola kerja organisasi"
+            ],
+            correct: 3,
+            explanation: "Karena kesalahan tersebut telah menjadi bagian dari sistem dan pola kerja organisasi"
+        }, {
+            id: 27,
+            question: "Penyimpangan dalam birokrasi dipengaruhi oleh …",
+            options: [
+                "A. Hanya faktor individu",
+                "B. Hanya faktor sistem",
+                "C. perilaku birokrat dan kondisi yang memungkinkan terjadinya penyimpangan",
+                "D. Hanya faktor eksternal"
+            ],
+            correct: 2,
+            explanation: "perilaku birokrat dan kondisi yang memungkinkan terjadinya penyimpangan"
+        }, {
+            id: 28,
+            question: "Pembengkakan birokrasi terjadi melalui …",
+            options: [
+                "A. Pengurangan unit kerja",
+                "B. Evaluasi efektivitas",
+                "C. Efisiensi organisasi",
+                "D. kegiatan menambah unit atau organisasi baru tanpa evaluasi efektivitas yang jelas"
+            ],
+            correct: 3,
+            explanation: "kegiatan menambah unit atau organisasi baru tanpa evaluasi efektivitas yang jelas"
+        }, {
+            id: 29,
+            question: "Birokrasi yang tidak efisien ditandai dengan …",
+            options: [
+                "A. Aturan yang sederhana",
+                "B. Prosedur yang jelas",
+                "C. Formulir yang sedikit",
+                "D. jumlah pedoman, prosedur, dan formular yang berlebihan dan tidak berguna"
+            ],
+            correct: 3,
+            explanation: "jumlah pedoman, prosedur, dan formular yang berlebihan dan tidak berguna"
+        }, {
+            id: 30,
+            question: "Salah satu penyebab kegagalan birokrasi adalah …",
+            options: [
+                "A. Kelebihan pegawai",
+                "B. Ketidakmampuan birokrasi dalam mengelola struktur organisasi",
+                "C. Anggaran yang besar",
+                "D. Teknologi yang maju"
+            ],
+            correct: 1,
+            explanation: "Ketidakmampuan birokrasi dalam mengelola struktur organisasi"
+        }, {
+            id: 31,
+            question: "Sistem merit dalam birokrasi berarti …",
+            options: [
+                "A. Pejabat diangkat berdasarkan kedekatan",
+                "B. Pejabat diangkat berdasarkan senioritas",
+                "C. Pejabat diangkat berdasarkan kekayaan",
+                "D. Setiap pejabat diseleksi berdasarkan kualifikasi profesional, idealnya melalui ujian kompetitif"
+            ],
+            correct: 3,
+            explanation: "Setiap pejabat diseleksi berdasarkan kualifikasi profesional, idealnya melalui ujian kompetitif"
+        }, {
+            id: 32,
+            question: "Penyalahgunaan wewenang dalam birokrasi terjadi ketika …",
+            options: [
+                "A. Pegawai bekerja sesuai aturan",
+                "B. Pegawai melayani masyarakat dengan baik",
+                "C. Seorang pegawai kerap menyalahgunakan wewenang untuk kepentingan pribadi",
+                "D. Pegawai mengikuti prosedur"
+            ],
+            correct: 2,
+            explanation: "Seorang pegawai kerap menyalahgunakan wewenang untuk kepentingan pribadi"
+        }, {
+            id: 33,
+            question: "Pengguna layanan birokrasi sering kali berada dalam posisi yang lemah karena …",
+            options: [
+                "A. Karena pengguna layanan birokrasi berada dalam posisi lemah dan tidak berdaya",
+                "B. Karena pengguna layanan tidak tahu haknya",
+                "C. Karena pengguna layanan tidak mau mengadu",
+                "D. Karena pengguna layanan tidak memiliki akses"
+            ],
+            correct: 0,
+            explanation: "Karena pengguna layanan birokrasi berada dalam posisi lemah dan tidak berdaya"
+        }, {
+            id: 34,
+            question: "Peran pemimpin dalam birokrasi adalah …",
+            options: [
+                "A. Membimbing dan menginspirasi",
+                "B. Memerintah dengan keras",
+                "C. Mengawasi setiap gerak pegawai",
+                "D. Menghukum pegawai"
+            ],
+            correct: 0,
+            explanation: "Membimbing dan menginspirasi"
+        }, {
+            id: 35,
+            question: "Fungsi manajemen yang paling mendasar dalam birokrasi adalah …",
+            options: [
+                "A. Pengawasan dan evaluasi",
+                "B. Koordinasi dan komunikasi",
+                "C. Perencanaan, pengorganisasian",
+                "D. Penganggaran dan pelaporan"
+            ],
+            correct: 2,
+            explanation: "Perencanaan, pengorganisasian"
+        }, {
+            id: 36,
+            question: "Dalam implementasi kebijakan, peran pemimpin adalah …",
+            options: [
+                "A. Menyusun anggaran",
+                "B. Mengevaluasi kinerja",
+                "C. Mengawasi pelaksanaan",
+                "D. Menerjemahkan, mengimplementasikan"
+            ],
+            correct: 3,
+            explanation: "Menerjemahkan, mengimplementasikan"
+        }, {
+            id: 37,
+            question: "Keberhasilan implementasi rencana ditandai dengan …",
+            options: [
+                "A. Rencana yang sempurna",
+                "B. Bawahan memahami dan melaksanakan rencana dengan benar",
+                "C. Anggaran yang besar",
+                "D. Teknologi yang canggih"
+            ],
+            correct: 1,
+            explanation: "Bawahan memahami dan melaksanakan rencana dengan benar"
+        }, {
+            id: 38,
+            question: "Penerima manfaat (stakeholder) dalam birokrasi adalah …",
+            options: [
+                "A. Pimpinan organisasi",
+                "B. Pegawai negeri",
+                "C. Orang lain atau mereka yang akan menerima manfaatnya",
+                "D. Pemerintah pusat"
+            ],
+            correct: 2,
+            explanation: "Orang lain atau mereka yang akan menerima manfaatnya"
+        }, {
+            id: 39,
+            question: "Mekanisme untuk mengetahui hasil dari suatu kebijakan adalah …",
+            options: [
+                "A. Evaluasi",
+                "B. Umpan balik (feedback)",
+                "C. Pengawasan",
+                "D. Pelaporan"
+            ],
+            correct: 1,
+            explanation: "Umpan balik (feedback)"
+        }, {
+            id: 40,
+            question: "Alat untuk memastikan organisasi berjalan sesuai rencana adalah …",
+            options: [
+                "A. Perencanaan",
+                "B. Pengorganisasian",
+                "C. Kontrol atau pengawasan organisasi",
+                "D. Penganggaran"
+            ],
+            correct: 2,
+            explanation: "Kontrol atau pengawasan organisasi"
+        }, {
+            id: 41,
+            question: "Pemimpin yang baik harus memahami …",
+            options: [
+                "A. Hanya anggaran organisasi",
+                "B. Hanya aturan formal",
+                "C. Aspirasi dan kondisi nyata masyarakat yang dipimpinnya",
+                "D. Hanya kepentingan pribadi"
+            ],
+            correct: 2,
+            explanation: "Aspirasi dan kondisi nyata masyarakat yang dipimpinnya"
+        }, {
+            id: 42,
+            question: "Pemimpin yang efektif harus mampu mengatasi …",
+            options: [
+                "A. Hanya masalah internal",
+                "B. Kendala dan kegagalan yang dihadapi",
+                "C. Hanya masalah eksternal",
+                "D. Hanya masalah keuangan"
+            ],
+            correct: 1,
+            explanation: "Kendala dan kegagalan yang dihadapi"
+        }, {
+            id: 43,
+            question: "Birokrasi yang baik harus mampu memberikan …",
+            options: [
+                "A. Respon yang lambat",
+                "B. Respon yang kaku",
+                "C. Tanggapan adaptif terhadap dinamika sosial",
+                "D. Tanggapan yang acuh"
+            ],
+            correct: 2,
+            explanation: "Tanggapan adaptif terhadap dinamika sosial"
+        }, {
+            id: 44,
+            question: "Pejabat publik bertanggung jawab kepada …",
+            options: [
+                "A. Atasan langsung",
+                "B. Rakyat atau masyarakat di daerahnya",
+                "C. Partai politik",
+                "D. Kelompok kepentingan"
+            ],
+            correct: 1,
+            explanation: "Rakyat atau masyarakat di daerahnya"
+        }, {
+            id: 45,
+            question: "Kekuasaan seorang pemimpin bersumber dari …",
+            options: [
+                "A. Kekayaan pribadi",
+                "B. Kekuasaan militer",
+                "C. Kedekatan dengan pusat",
+                "D. Legitimasi dan mandat masyarakat"
+            ],
+            correct: 3,
+            explanation: "Legitimasi dan mandat masyarakat"
+        }, {
+            id: 46,
+            question: "Etika dalam birokrasi berfungsi untuk …",
+            options: [
+                "A. Menghalangi inovasi",
+                "B. Membatasi kebebasan",
+                "C. Etika mengatur perilaku manusia agar tidak merugikan orang lain",
+                "D. Melindungi kepentingan pimpinan"
+            ],
+            correct: 2,
+            explanation: "Etika mengatur perilaku manusia agar tidak merugikan orang lain"
+        }, {
+            id: 47,
+            question: "Etika memberikan … bagi perilaku manusia.",
+            options: [
+                "A. Kebebasan tanpa batas",
+                "B. Kekuasaan mutlak",
+                "C. Batas atau pagar perilaku agar manusia tidak bertindak sembarangan",
+                "D. Hak istimewa"
+            ],
+            correct: 2,
+            explanation: "Batas atau pagar perilaku agar manusia tidak bertindak sembarangan"
+        }, {
+            id: 48,
+            question: "Kode etik profesi adalah …",
+            options: [
+                "A. Aturan perilaku khusus sesuai bidang keahlian",
+                "B. Aturan perilaku umum",
+                "C. Aturan yang tidak mengikat",
+                "D. Aturan yang bersifat sementara"
+            ],
+            correct: 0,
+            explanation: "Aturan perilaku khusus sesuai bidang keahlian"
+        }, {
+            id: 49,
+            question: "Moralitas memiliki peran penting dalam …",
+            options: [
+                "A. Hanya kehidupan pribadi",
+                "B. Hanya kehidupan sosial",
+                "C. Hanya kehidupan politik",
+                "D. Moralitas menjadi salah satu faktor penting dalam membentuk etika dan karakter seseorang"
+            ],
+            correct: 3,
+            explanation: "Moralitas menjadi salah satu faktor penting dalam membentuk etika dan karakter seseorang"
+        }, {
+            id: 50,
+            question: "Landasan etika yang berasal dari dalam diri individu disebut …",
+            options: [
+                "A. Etika sosial",
+                "B. Etika profesional",
+                "C. Etika organisasi",
+                "D. Moralitas personal"
+            ],
+            correct: 3,
+            explanation: "Moralitas personal"
+        }, {
+            id: 51,
+            question: "Peran moralitas dalam kehidupan adalah …",
+            options: [
+                "A. Membuat hidup menjadi rumit",
+                "B. Menghambat kemajuan",
+                "C. Moralitas membedakan secara jelas batas antara yang baik dan yang buruk",
+                "D. Membatasi kebebasan"
+            ],
+            correct: 2,
+            explanation: "Moralitas membedakan secara jelas batas antara yang baik dan yang buruk"
+        }, {
+            id: 52,
+            question: "Dalam mencapai hasil, etika menekankan bahwa …",
+            options: [
+                "A. Hasil adalah segalanya",
+                "B. Cara tidak penting",
+                "C. Cara memperoleh hasil tetap harus sesuai dengan norma etika",
+                "D. Tujuan menghalalkan cara"
+            ],
+            correct: 2,
+            explanation: "Cara memperoleh hasil tetap harus sesuai dengan norma etika"
+        }, {
+            id: 53,
+            question: "Etika kepemimpinan yang baik didasarkan pada …",
+            options: [
+                "A. Kekuasaan dan pengaruh",
+                "B. Kekayaan dan status",
+                "C. Popularitas dan karisma",
+                "D. Nilai dasar etika kepemimpinan yang berbasis keadilan dan tanggung jawab"
+            ],
+            correct: 3,
+            explanation: "Nilai dasar etika kepemimpinan yang berbasis keadilan dan tanggung jawab"
+        }, {
+            id: 54,
+            question: "Seorang pemimpin yang beretika harus …",
+            options: [
+                "A. Mengutamakan kepentingan pribadi",
+                "B. Mengabaikan kepentingan publik",
+                "C. Hanya fokus pada target",
+                "D. Menyadari tanggung jawab moral terhadap publik dan dirinya sendiri"
+            ],
+            correct: 3,
+            explanation: "Menyadari tanggung jawab moral terhadap publik dan dirinya sendiri"
+        }, {
+            id: 55,
+            question: "Organisasi yang inovatif perlu …",
+            options: [
+                "A. Menghindari risiko",
+                "B. Menghukum kegagalan",
+                "C. Memberikan toleransi terhadap kegagalan dalam pengambilan risiko",
+                "D. Mempertahankan status quo"
+            ],
+            correct: 2,
+            explanation: "Memberikan toleransi terhadap kegagalan dalam pengambilan risiko"
+        }, {
+            id: 56,
+            question: "Pemahaman kultur organisasi membantu pimpinan dalam …",
+            options: [
+                "A. Pemahaman kultur organisasi membantu pimpinan membuat keputusan yang sesuai dengan nilai-nilai organisasi",
+                "B. Meningkatkan anggaran",
+                "C. Mengurangi pegawai",
+                "D. Mengubah struktur organisasi"
+            ],
+            correct: 0,
+            explanation: "Pemahaman kultur organisasi membantu pimpinan membuat keputusan yang sesuai dengan nilai-nilai organisasi"
+        }, {
+            id: 57,
+            question: "Sikap negatif yang dapat menghambat kinerja pemimpin adalah …",
+            options: [
+                "A. Rasa percaya diri",
+                "B. Rasa empati",
+                "C. Rasa cemas dan iri terhadap prestasi bawahannya",
+                "D. Rasa tanggung jawab"
+            ],
+            correct: 2,
+            explanation: "Rasa cemas dan iri terhadap prestasi bawahannya"
+        }, {
+            id: 58,
+            question: "Tujuan mempelajari kultur organisasi adalah …",
+            options: [
+                "A. Agar dapat mengembangkan dan mengelola organisasi secara efektif",
+                "B. Agar dapat menghindari tanggung jawab",
+                "C. Agar dapat mempertahankan status quo",
+                "D. Agar dapat meningkatkan kekuasaan pribadi"
+            ],
+            correct: 0,
+            explanation: "Agar dapat mengembangkan dan mengelola organisasi secara efektif"
+        }, {
+            id: 59,
+            question: "Kultur organisasi bersifat …",
+            options: [
+                "A. Evaluatif",
+                "B. Normatif",
+                "C. Deskriptif, bukan evaluatif",
+                "D. Preskriptif"
+            ],
+            correct: 2,
+            explanation: "Kultur organisasi bersifat deskriptif, bukan evaluatif"
+        }, {
+            id: 60,
+            question: "Definisi budaya organisasi beragam karena …",
+            options: [
+                "A. Tidak ada yang tertarik",
+                "B. Budaya tidak penting",
+                "C. Budaya mudah didefinisikan",
+                "D. Terdapat banyak definisi dan fokus berbeda dari para ahli"
+            ],
+            correct: 3,
+            explanation: "Terdapat banyak definisi dan fokus berbeda dari para ahli"
+        }, {
+            id: 61,
+            question: "Birokrasi dalam perspektif budaya harus …",
+            options: [
+                "A. Diabaikan",
+                "B. Dihapuskan",
+                "C. Menghayati dan memperlakukan birokrasi",
+                "D. Direformasi"
+            ],
+            correct: 2,
+            explanation: "Menghayati dan memperlakukan birokrasi"
+        }, {
+            id: 62,
+            question: "Birokrasi tradisional pada awalnya berfungsi untuk …",
+            options: [
+                "A. Melayani masyarakat",
+                "B. Mengembangkan ekonomi",
+                "C. Mendidik rakyat",
+                "D. Menjaga kekuasaan raja"
+            ],
+            correct: 3,
+            explanation: "Menjaga kekuasaan raja"
+        }, {
+            id: 63,
+            question: "Reformasi birokrasi bertujuan …",
+            options: [
+                "A. Mempertahankan sistem lama",
+                "B. Membangun fondasi bagi perubahan organisasi",
+                "C. Menghapus birokrasi",
+                "D. Mengurangi pelayanan"
+            ],
+            correct: 1,
+            explanation: "Membangun fondasi bagi perubahan organisasi"
+        }, {
+            id: 64,
+            question: "Aktor utama dalam reformasi birokrasi adalah …",
+            options: [
+                "A. Pegawai negeri",
+                "B. Masyarakat",
+                "C. Swasta",
+                "D. Pimpinan puncak birokrasi"
+            ],
+            correct: 3,
+            explanation: "Pimpinan puncak birokrasi"
+        }, {
+            id: 65,
+            question: "Ciri birokrasi tradisional adalah …",
+            options: [
+                "A. Hierarki pendek dan keputusan terdesentralisasi",
+                "B. Hierarki fleksibel",
+                "C. Hierarki panjang dan keputusan berada di pimpinan puncak",
+                "D. Hierarki datar"
+            ],
+            correct: 2,
+            explanation: "Hierarki panjang dan keputusan berada di pimpinan puncak"
+        }, {
+            id: 66,
+            question: "Kekuasaan dalam birokrasi sering menjadi masalah karena …",
+            options: [
+                "A. Kekuasaan tidak penting",
+                "B. Kekuasaan dibagi rata",
+                "C. Karena menjadikan kekuasaan sebagai hak istimewa pimpinan",
+                "D. Kekuasaan tidak jelas"
+            ],
+            correct: 2,
+            explanation: "Karena menjadikan kekuasaan sebagai hak istimewa pimpinan"
+        }, {
+            id: 67,
+            question: "Reformasi birokrasi bermanfaat untuk …",
+            options: [
+                "A. Mempertahankan kebijakan lama",
+                "B. Menghambat perubahan",
+                "C. Menjadi dasar pembaruan kebijakan dan praktik administrasi negara",
+                "D. Mengurangi pelayanan publik"
+            ],
+            correct: 2,
+            explanation: "Menjadi dasar pembaruan kebijakan dan praktik administrasi negara"
+        }, {
+            id: 68,
+            question: "Budaya dalam konteks organisasi memiliki …",
+            options: [
+                "A. Satu definisi tunggal",
+                "B. Definisi yang jelas",
+                "C. Definisi yang sederhana",
+                "D. Budaya memiliki banyak arti dan penekanan yang berbeda-beda"
+            ],
+            correct: 3,
+            explanation: "Budaya memiliki banyak arti dan penekanan yang berbeda-beda"
+        }, {
+            id: 69,
+            question: "Sistem merit dalam birokrasi bertujuan untuk …",
+            options: [
+                "A. Melindungi kepentingan politik",
+                "B. Memastikan kebijakan dibuat berdasarkan kompetensi dan profesionalisme",
+                "C. Mempertahankan status quo",
+                "D. Mengurangi anggaran"
+            ],
+            correct: 1,
+            explanation: "Memastikan kebijakan dibuat berdasarkan kompetensi dan profesionalisme"
+        }, {
+            id: 70,
+            question: "Cerita yang diyakini kebenarannya dalam organisasi disebut …",
+            options: [
+                "A. Legenda",
+                "B. Mite",
+                "C. Fakta",
+                "D. Data"
+            ],
+            correct: 1,
+            explanation: "Mite"
+        }, {
+            id: 71,
+            question: "Nilai-nilai yang diwariskan secara turun-temurun dalam organisasi disebut …",
+            options: [
+                "A. Inovasi",
+                "B. Modernisasi",
+                "C. Perubahan",
+                "D. Tradisi"
+            ],
+            correct: 3,
+            explanation: "Tradisi"
+        }, {
+            id: 72,
+            question: "Simbol dalam organisasi adalah …",
+            options: [
+                "A. Objek yang memiliki makna sakral",
+                "B. Objek yang memiliki nilai ekonomi",
+                "C. Objek yang tidak memiliki makna dan dapat dikerahkan",
+                "D. Objek yang memiliki kekuatan magis"
+            ],
+            correct: 2,
+            explanation: "Objek yang tidak memiliki makna dan dapat dikerahkan"
+        }, {
+            id: 73,
+            question: "Kepatuhan dalam birokrasi idealnya bersifat …",
+            options: [
+                "A. Kepatuhan sukarela",
+                "B. Kepatuhan paksa",
+                "C. Kepatuhan karena takut",
+                "D. Kepatuhan karena imbalan"
+            ],
+            correct: 0,
+            explanation: "Kepatuhan sukarela"
+        }, {
+            id: 74,
+            question: "Pemimpin yang baik harus mampu … terhadap situasi.",
+            options: [
+                "A. Bertindak impulsif",
+                "B. Bersikap secara tepat",
+                "C. Mengabaikan situasi",
+                "D. Menghindari tanggung jawab"
+            ],
+            correct: 1,
+            explanation: "Bersikap secara tepat"
+        }, {
+            id: 75,
+            question: "Budaya organisasi yang positif dapat …",
+            options: [
+                "A. Menurunkan produktivitas",
+                "B. Meningkatkan konflik",
+                "C. Meningkatkan motivasi kerja",
+                "D. Mengurangi inovasi"
+            ],
+            correct: 2,
+            explanation: "Meningkatkan motivasi kerja"
+        }, {
+            id: 76,
+            question: "Sikap tidak percaya masyarakat terhadap pemerintah dapat …",
+            options: [
+                "A. Meningkatkan kepercayaan",
+                "B. Memperbaiki kinerja",
+                "C. Mendorong partisipasi",
+                "D. Mengecewakan pemerintah dengan sikap tidak percaya"
+            ],
+            correct: 3,
+            explanation: "Mengecewakan pemerintah dengan sikap tidak percaya"
+        }, {
+            id: 77,
+            question: "Birokrat yang baik harus …",
+            options: [
+                "A. Bekerja sesuai keinginan pribadi",
+                "B. Bekerja sesuai perintah atasan",
+                "C. Bekerja sesuai dengan harapan normatif dari publik",
+                "D. Bekerja sesuai kepentingan kelompok"
+            ],
+            correct: 2,
+            explanation: "Bekerja sesuai dengan harapan normatif dari publik"
+        }, {
+            id: 78,
+            question: "Akibat dari rendahnya kepercayaan publik adalah …",
+            options: [
+                "A. Meningkatnya partisipasi",
+                "B. Meningkatnya pengawasan",
+                "C. Munculnya ketidakpercayaan publik dan pengawasan sosial yang melemah",
+                "D. Meningkatnya efisiensi"
+            ],
+            correct: 2,
+            explanation: "Munculnya ketidakpercayaan publik dan pengawasan sosial yang melemah"
+        }, {
+            id: 79,
+            question: "Partisipasi masyarakat dalam kebijakan publik membuat …",
+            options: [
+                "A. Masyarakat menjadi pasif",
+                "B. Masyarakat menjadi apatis",
+                "C. Masyarakat merasa dilibatkan dan bertanggung jawab terhadap kebijakan publik",
+                "D. Masyarakat menjadi acuh"
+            ],
+            correct: 2,
+            explanation: "Masyarakat merasa dilibatkan dan bertanggung jawab terhadap kebijakan publik"
+        }, {
+            id: 80,
+            question: "Sistem birokrasi yang baik harus …",
+            options: [
+                "A. Memastikan sistem kerja berjalan meskipun terjadi pergantian pejabat",
+                "B. Bergantung pada individu tertentu",
+                "C. Tidak memiliki standar",
+                "D. Bersifat ad hoc"
+            ],
+            correct: 0,
+            explanation: "Memastikan sistem kerja berjalan meskipun terjadi pergantian pejabat"
+        }, {
+            id: 81,
+            question: "Standarisasi dalam birokrasi dilakukan melalui …",
+            options: [
+                "A. Pengurangan pegawai",
+                "B. Menyusun berbagai Standard Operating Procedures (SOP)",
+                "C. Peningkatan anggaran",
+                "D. Pengurangan unit kerja"
+            ],
+            correct: 1,
+            explanation: "Menyusun berbagai Standard Operating Procedures (SOP)"
+        }, {
+            id: 82,
+            question: "Hambatan dalam transparansi birokrasi adalah …",
+            options: [
+                "A. Keterbukaan informasi",
+                "B. Akses informasi yang mudah",
+                "C. Keengganan masyarakat untuk menggunakan hak informasi",
+                "D. Kebijakan yang transparan"
+            ],
+            correct: 2,
+            explanation: "Keengganan masyarakat untuk menggunakan hak informasi"
+        }, {
+            id: 83,
+            question: "Pengawasan birokrasi bertujuan untuk memastikan …",
+            options: [
+                "A. Anggaran terserap",
+                "B. Jalannya kebijakan publik",
+                "C. Pegawai disiplin",
+                "D. Unit kerja bertambah"
+            ],
+            correct: 1,
+            explanation: "Jalannya kebijakan publik"
+        }, {
+            id: 84,
+            question: "Faktor yang mempengaruhi kinerja birokrasi adalah …",
+            options: [
+                "A. Hanya aspek hukum",
+                "B. Hanya aspek politik",
+                "C. Sosio-kultural masyarakat",
+                "D. Hanya aspek ekonomi"
+            ],
+            correct: 2,
+            explanation: "Sosio-kultural masyarakat"
+        }, {
+            id: 85,
+            question: "Perencanaan dalam birokrasi harus jelas …",
+            options: [
+                "A. Anggarannya",
+                "B. Waktunya",
+                "C. Arah dan tujuan",
+                "D. Pelaksananya"
+            ],
+            correct: 2,
+            explanation: "Arah dan tujuan"
+        }, {
+            id: 86,
+            question: "Birokrasi yang baik bersifat …",
+            options: [
+                "A. Kacau dan tidak menentu",
+                "B. Fleksibel tanpa aturan",
+                "C. Tertib dan terarah",
+                "D. Lambat dan berbelit-belit"
+            ],
+            correct: 2,
+            explanation: "Tertib dan terarah"
+        }, {
+            id: 87,
+            question: "Fungsi pengawasan dalam birokrasi adalah …",
+            options: [
+                "A. Perencanaan",
+                "B. Pengorganisasian",
+                "C. Kontrol atau pengendalian",
+                "D. Penganggaran"
+            ],
+            correct: 2,
+            explanation: "Kontrol atau pengendalian"
+        }, {
+            id: 88,
+            question: "Dalam pengawasan birokrasi, diperlukan adanya …",
+            options: [
+                "A. Kebijakan",
+                "B. Standar",
+                "C. Anggaran",
+                "D. Pegawai"
+            ],
+            correct: 1,
+            explanation: "Standar"
+        }, {
+            id: 89,
+            question: "Akuntabilitas publik memerlukan …",
+            options: [
+                "A. Kerahasiaan",
+                "B. Kepatuhan buta",
+                "C. Proses akuntabilitas yang transparan",
+                "D. Otoritarianisme"
+            ],
+            correct: 2,
+            explanation: "Proses akuntabilitas yang transparan"
+        }, {
+            id: 90,
+            question: "Perbedaan utama antara controlling dan pengawasan lainnya adalah …",
+            options: [
+                "A. Controlling bersifat pasif",
+                "B. Controlling menekankan pada perbandingan performa aktual dan rencana serta koreksi penyimpangan",
+                "C. Controlling tidak memerlukan standar",
+                "D. Controlling hanya dilakukan di akhir"
+            ],
+            correct: 1,
+            explanation: "Controlling menekankan pada perbandingan performa aktual dan rencana serta koreksi penyimpangan"
+        }, {
+            id: 91,
+            question: "Pengawasan yang efektif harus …",
+            options: [
+                "A. Dilakukan secara terpisah",
+                "B. Dihubungkan dengan rencana dan kedudukan dalam organisasi",
+                "C. Dilakukan tanpa rencana",
+                "D. Dilakukan secara acak"
+            ],
+            correct: 1,
+            explanation: "Dihubungkan dengan rencana dan kedudukan dalam organisasi"
+        }, {
+            id: 92,
+            question: "Komunikasi dalam pengawasan birokrasi mengharuskan …",
+            options: [
+                "A. Komunikasi satu arah",
+                "B. Komunikasi terbatas",
+                "C. Keharusan mengomunikasikan informasi tugas secara menyeluruh",
+                "D. Komunikasi informal"
+            ],
+            correct: 2,
+            explanation: "Keharusan mengomunikasikan informasi tugas secara menyeluruh"
+        }, {
+            id: 93,
+            question: "Pengawasan birokrasi bertujuan untuk mendeteksi …",
+            options: [
+                "A. Prestasi pegawai",
+                "B. Masalah-masalah atau penyimpangan dari standar",
+                "C. Kelebihan anggaran",
+                "D. Kinerja yang baik"
+            ],
+            correct: 1,
+            explanation: "Masalah-masalah atau penyimpangan dari standar"
+        }, {
+            id: 94,
+            question: "Pengawasan represif adalah pengawasan yang …",
+            options: [
+                "A. Bersifat preventif",
+                "B. Menitikberatkan pada pencegahan",
+                "C. Menitikberatkan pada koreksi terhadap pelanggaran yang telah terjadi",
+                "D. Bersifat partisipatif"
+            ],
+            correct: 2,
+            explanation: "Menitikberatkan pada koreksi terhadap pelanggaran yang telah terjadi"
+        }, {
+            id: 95,
+            question: "Pengawasan dalam birokrasi harus mengacu pada …",
+            options: [
+                "A. Keinginan pimpinan",
+                "B. Kebiasaan organisasi",
+                "C. Rencana dan tujuan organisasi",
+                "D. Tradisi yang berlaku"
+            ],
+            correct: 2,
+            explanation: "Rencana dan tujuan organisasi"
+        }, {
+            id: 96,
+            question: "Pengawasan yang dilakukan setelah terjadi pelanggaran disebut …",
+            options: [
+                "A. Pengawasan preventif",
+                "B. Pengawasan represif",
+                "C. Pengawasan partisipatif",
+                "D. Pengawasan melekat"
+            ],
+            correct: 1,
+            explanation: "Pengawasan represif"
+        }, {
+            id: 97,
+            question: "Pengawasan dalam birokrasi adalah …",
+            options: [
+                "A. Kegiatan yang dilakukan oleh atasan",
+                "B. Kegiatan yang dilakukan oleh bawahan",
+                "C. Kegiatan yang dilakukan oleh pihak luar",
+                "D. Kegiatan yang dilaksanakan sebagai bentuk tanggung jawab pimpinan"
+            ],
+            correct: 3,
+            explanation: "Kegiatan yang dilaksanakan sebagai bentuk tanggung jawab pimpinan"
+        }, {
+            id: 98,
+            question: "Tindak lanjut dari pengawasan adalah …",
+            options: [
+                "A. Membiarkan temuan",
+                "B. Melaporkan temuan",
+                "C. Mengabaikan temuan",
+                "D. Mengambil tindakan atas hasil temuan pengawasan"
+            ],
+            correct: 3,
+            explanation: "Mengambil tindakan atas hasil temuan pengawasan"
+        }, {
+            id: 99,
+            question: "Pengawasan melekat dilakukan sebanyak …",
+            options: [
+                "A. 1 kali",
+                "B. 2 kali",
+                "C. 3 kali",
+                "D. 4 kali"
+            ],
+            correct: 2,
+            explanation: "3 kali"
+        }, {
+            id: 100,
+            question: "Partisipasi masyarakat dalam pengawasan birokrasi dapat dilakukan dengan …",
+            options: [
+                "A. Hanya mengawasi dari jauh",
+                "B. Tidak melakukan apa-apa",
+                "C. Mengajukan pengaduan dan pemberian masukan atas layanan birokrasi",
+                "D. Hanya membaca berita"
+            ],
+            correct: 2,
+            explanation: "Mengajukan pengaduan dan pemberian masukan atas layanan birokrasi"
+        }, {
+            id: 101,
+            question: "Pengawasan partisipatif diwujudkan melalui …",
+            options: [
+                "A. Rapat tertutup",
+                "B. Memberikan informasi kepada peserta pengadaan atau masyarakat yang mengajukan pengaduan",
+                "C. Pengawasan internal",
+                "D. Audit keuangan"
+            ],
+            correct: 1,
+            explanation: "Memberikan informasi kepada peserta pengadaan atau masyarakat yang mengajukan pengaduan"
+        }, {
+            id: 102,
+            question: "Wasmas (Pengawasan Masyarakat) bersifat …",
+            options: [
+                "A. Top-down",
+                "B. Birokratis",
+                "C. Wasmas bersifat partisipatif dan dilakukan secara mandiri oleh publik atas penyelenggaraan birokrasi",
+                "D. Tertutup"
+            ],
+            correct: 2,
+            explanation: "Wasmas bersifat partisipatif dan dilakukan secara mandiri oleh publik atas penyelenggaraan birokrasi"
+        }, {
+            id: 103,
+            question: "Akuntabilitas publik dibangun melalui …",
+            options: [
+                "A. Kerahasiaan informasi",
+                "B. Menciptakan akuntabilitas publik melalui pengawasan dan penindakan terhadap maladministrasi",
+                "C. Mengabaikan pengaduan",
+                "D. Menutup akses informasi"
+            ],
+            correct: 1,
+            explanation: "Menciptakan akuntabilitas publik melalui pengawasan dan penindakan terhadap maladministrasi"
+        }, {
+            id: 104,
+            question: "Peran pemerintah pusat dalam pengawasan daerah adalah …",
+            options: [
+                "A. Memberikan dana",
+                "B. Mengambil alih pemerintahan daerah",
+                "C. Memberikan pembinaan, pelatihan, dan supervisi kepada daerah",
+                "D. Membiarkan daerah berjalan sendiri"
+            ],
+            correct: 2,
+            explanation: "Memberikan pembinaan, pelatihan, dan supervisi kepada daerah"
+        }, {
+            id: 105,
+            question: "Pengawasan keuangan negara meliputi …",
+            options: [
+                "A. Hanya pengawasan anggaran",
+                "B. Pengawasan pendapatan",
+                "C. Melakukan pengawasan kas, dokumen, dan surat berharga pada instansi terkait",
+                "D. Pengawasan belanja saja"
+            ],
+            correct: 2,
+            explanation: "Melakukan pengawasan kas, dokumen, dan surat berharga pada instansi terkait"
+        }, {
+            id: 106,
+            question: "Governansi publik melibatkan …",
+            options: [
+                "A. Hanya pemerintah",
+                "B. Hanya swasta",
+                "C. Pendekatan normatif terhadap distribusi kekuasaan yang melibatkan banyak pihak",
+                "D. Hanya masyarakat sipil"
+            ],
+            correct: 2,
+            explanation: "Pendekatan normatif terhadap distribusi kekuasaan yang melibatkan banyak pihak"
+        }, {
+            id: 107,
+            question: "Privatisasi dalam konteks governansi publik adalah …",
+            options: [
+                "A. Menyerahkan urusan publik ke masyarakat",
+                "B. Memperkuat BUMN",
+                "C. Melakukan privatisasi terhadap BUMN atau lembaga publik tertentu",
+                "D. Menambah perusahaan negara"
+            ],
+            correct: 2,
+            explanation: "Melakukan privatisasi terhadap BUMN atau lembaga publik tertentu"
+        }, {
+            id: 108,
+            question: "Political accountability mencakup hubungan harmonis antara …",
+            options: [
+                "A. Hanya pemerintah dan swasta",
+                "B. Pemerintah dan masyarakat",
+                "C. Swasta dan masyarakat",
+                "D. Political accountability - hubungan harmonis antara pemerintah, swasta, dan masyarakat"
+            ],
+            correct: 3,
+            explanation: "Political accountability - hubungan harmonis antara pemerintah, swasta, dan masyarakat"
+        }, {
+            id: 109,
+            question: "New Public Management berorientasi pada …",
+            options: [
+                "A. Prosedur yang kaku",
+                "B. Birokrasi tradisional",
+                "C. Orientasi pada hasil dan efisiensi pelayanan publik",
+                "D. Sentralisasi kekuasaan"
+            ],
+            correct: 2,
+            explanation: "Orientasi pada hasil dan efisiensi pelayanan publik"
+        }, {
+            id: 110,
+            question: "Deregulasi bertujuan untuk …",
+            options: [
+                "A. Menambah aturan",
+                "B. Memperkuat birokrasi",
+                "C. Mengurangi pengeluaran pemerintah yang tidak produktif",
+                "D. Meningkatkan pajak"
+            ],
+            correct: 2,
+            explanation: "Mengurangi pengeluaran pemerintah yang tidak produktif"
+        }, {
+            id: 111,
+            question: "Contoh deregulasi di Indonesia adalah …",
+            options: [
+                "A. Penambahan birokrasi",
+                "B. Deregulasi sektor keuangan",
+                "C. Peningkatan tarif",
+                "D. Penambahan pajak"
+            ],
+            correct: 1,
+            explanation: "Deregulasi sektor keuangan"
+        }, {
+            id: 112,
+            question: "Pemerintah yang kompetitif dalam NPM disebut …",
+            options: [
+                "A. Traditional government",
+                "B. Competitive government",
+                "C. Centralized government",
+                "D. Bureaucratic government"
+            ],
+            correct: 1,
+            explanation: "Competitive government"
+        }, {
+            id: 113,
+            question: "Pemerintah yang desentralisasi disebut …",
+            options: [
+                "A. Centralized government",
+                "B. Authoritarian government",
+                "C. Decentralized government",
+                "D. Traditional government"
+            ],
+            correct: 2,
+            explanation: "Decentralized government"
+        }, {
+            id: 114,
+            question: "Governansi publik melibatkan kerjasama antara …",
+            options: [
+                "A. Hanya pemerintah dan swasta",
+                "B. Pemerintah, masyarakat sipil, dan pelaku usaha",
+                "C. Hanya pemerintah dan masyarakat",
+                "D. Hanya swasta dan masyarakat"
+            ],
+            correct: 1,
+            explanation: "Pemerintah, masyarakat sipil, dan pelaku usaha"
+        }, {
+            id: 115,
+            question: "Prinsip NPM yang berfokus pada melayani warga negara adalah …",
+            options: [
+                "A. Serve customers, not citizens",
+                "B. Serve citizens, not customers",
+                "C. Serve both citizens and customers",
+                "D. Serve neither"
+            ],
+            correct: 1,
+            explanation: "Serve citizens, not customers"
+        }, {
+            id: 116,
+            question: "Prinsip 'think strategically, act democratically' berarti …",
+            options: [
+                "A. Think strategically, act democratically",
+                "B. Think democratically, act strategically",
+                "C. Think and act strategically",
+                "D. Think and act democratically"
+            ],
+            correct: 0,
+            explanation: "Think strategically, act democratically"
+        }, {
+            id: 117,
+            question: "Reformasi birokrasi di Indonesia dipengaruhi oleh …",
+            options: [
+                "A. Hanya faktor politik",
+                "B. Latar belakang sejarah, budaya, dan kompleksitas sosial masyarakat",
+                "C. Hanya faktor ekonomi",
+                "D. Hanya faktor hukum"
+            ],
+            correct: 1,
+            explanation: "Latar belakang sejarah, budaya, dan kompleksitas sosial masyarakat"
+        }, {
+            id: 118,
+            question: "Reformasi birokrasi di Indonesia terjadi setelah …",
+            options: [
+                "A. Kemerdekaan",
+                "B. Orde Lama",
+                "C. Orde Baru",
+                "D. Perubahan pemerintahan dari Orde Baru ke Orde Reformasi"
+            ],
+            correct: 3,
+            explanation: "Perubahan pemerintahan dari Orde Baru ke Orde Reformasi"
+        }, {
+            id: 119,
+            question: "Reformasi adalah …",
+            options: [
+                "A. Proses yang biasa",
+                "B. Proses yang stagnan",
+                "C. Proses yang tidak biasa dengan tujuan memperbaiki keadaan",
+                "D. Proses yang lambat"
+            ],
+            correct: 2,
+            explanation: "Proses yang tidak biasa dengan tujuan memperbaiki keadaan"
+        }, {
+            id: 120,
+            question: "Revolusi adalah perubahan …",
+            options: [
+                "A. Perubahan secara drastis untuk perbaikan sosial atau politik",
+                "B. Perubahan yang bertahap",
+                "C. Perubahan yang kecil",
+                "D. Perubahan yang tidak berarti"
+            ],
+            correct: 0,
+            explanation: "Perubahan secara drastis untuk perbaikan sosial atau politik"
+        }, {
+            id: 121,
+            question: "Reformasi birokrasi bertujuan untuk …",
+            options: [
+                "A. Mempertahankan status quo",
+                "B. Mengurangi pelayanan",
+                "C. Memperbaiki peran birokrasi agar lebih sesuai dengan prinsip-prinsip demokrasi",
+                "D. Meningkatkan birokrasi"
+            ],
+            correct: 2,
+            explanation: "Memperbaiki peran birokrasi agar lebih sesuai dengan prinsip-prinsip demokrasi"
+        }, {
+            id: 122,
+            question: "Birokrat yang baik harus …",
+            options: [
+                "A. Hanya mengikuti perintah",
+                "B. Hanya fokus pada anggaran",
+                "C. Memahami manajemen pemerintahan dan hukum administrasi negara",
+                "D. Mengabaikan hukum"
+            ],
+            correct: 2,
+            explanation: "Memahami manajemen pemerintahan dan hukum administrasi negara"
+        }, {
+            id: 123,
+            question: "Birokrasi yang netral berarti …",
+            options: [
+                "A. Netral terhadap kekuatan politik dan tidak berpihak pada salah satu partai",
+                "B. Berpihak pada pemerintah",
+                "C. Berpihak pada oposisi",
+                "D. Tidak peduli politik"
+            ],
+            correct: 0,
+            explanation: "Netral terhadap kekuatan politik dan tidak berpihak pada salah satu partai"
+        }, {
+            id: 124,
+            question: "Birokrasi harus mampu …",
+            options: [
+                "A. Mempertahankan kebijakan lama",
+                "B. Mengakomodasi perubahan masyarakat dan menjawab kebutuhan keadilan yang aktual",
+                "C. Menolak perubahan",
+                "D. Mengabaikan kebutuhan masyarakat"
+            ],
+            correct: 1,
+            explanation: "Mengakomodasi perubahan masyarakat dan menjawab kebutuhan keadilan yang aktual"
+        }, {
+            id: 125,
+            question: "Tantangan birokrasi di era globalisasi adalah …",
+            options: [
+                "A. Pasar lokal",
+                "B. Pasar global melalui pemanfaatan kecenderungan ekonomi dunia",
+                "C. Budaya lokal",
+                "D. Kebijakan domestik"
+            ],
+            correct: 1,
+            explanation: "Pasar global melalui pemanfaatan kecenderungan ekonomi dunia"
+        }, {
+            id: 126,
+            question: "Reformasi birokrasi memerlukan …",
+            options: [
+                "A. Hanya perubahan struktur",
+                "B. Hanya perubahan aturan",
+                "C. Internalisasi nilai, pola pikir, dan perilaku kerja yang selaras dengan pelayanan publik",
+                "D. Hanya perubahan anggaran"
+            ],
+            correct: 2,
+            explanation: "Internalisasi nilai, pola pikir, dan perilaku kerja yang selaras dengan pelayanan publik"
+        }, {
+            id: 127,
+            question: "Integritas dalam birokrasi ditegakkan melalui …",
+            options: [
+                "A. Kerahasiaan",
+                "B. Nepotisme",
+                "C. Menegakkan integritas melalui akuntabilitas dan transparansi",
+                "D. Otoritarianisme"
+            ],
+            correct: 2,
+            explanation: "Menegakkan integritas melalui akuntabilitas dan transparansi"
+        }, {
+            id: 128,
+            question: "Indeks persepsi korupsi disebut …",
+            options: [
+                "A. Corruption perception index",
+                "B. Corruption perception index",
+                "C. Corruption evaluation index",
+                "D. Corruption assessment index"
+            ],
+            correct: 1,
+            explanation: "Corruption perception index"
+        }, {
+            id: 129,
+            question: "Keberhasilan reformasi birokrasi membutuhkan …",
+            options: [
+                "A. Komitmen dari sebagian pihak",
+                "B. Seluruh pihak terkait, termasuk pimpinan tertinggi negara, memiliki komitmen bersama",
+                "C. Komitmen dari pimpinan saja",
+                "D. Komitmen dari masyarakat saja"
+            ],
+            correct: 1,
+            explanation: "Seluruh pihak terkait, termasuk pimpinan tertinggi negara, memiliki komitmen bersama"
+        }, {
+            id: 130,
+            question: "Upaya pencegahan korupsi di birokrasi adalah …",
+            options: [
+                "A. Meningkatkan gaji",
+                "B. Menambah pegawai",
+                "C. Membangun budaya antikorupsi dan pelayanan prima di unit kerja",
+                "D. Menambah unit kerja"
+            ],
+            correct: 2,
+            explanation: "Membangun budaya antikorupsi dan pelayanan prima di unit kerja"
+        }, {
+            id: 131,
+            question: "Reformasi birokrasi memerlukan …",
+            options: [
+                "A. Hanya perubahan struktural",
+                "B. Hanya perubahan prosedural",
+                "C. Hanya perubahan anggaran",
+                "D. Perubahan mindset dan budaya kinerja di lingkungan organisasi"
+            ],
+            correct: 3,
+            explanation: "Perubahan mindset dan budaya kinerja di lingkungan organisasi"
+        }, {
+            id: 132,
+            question: "Sistem merit dalam birokrasi modern menekankan pada …",
+            options: [
+                "A. Senioritas dan loyalitas",
+                "B. Kedekatan dengan pimpinan",
+                "C. Menetapkan pola pikir dan budaya kerja berdasarkan kualifikasi, kompetensi, dan prestasi kerja",
+                "D. Asal daerah dan golongan"
+            ],
+            correct: 2,
+            explanation: "Menetapkan pola pikir dan budaya kerja berdasarkan kualifikasi, kompetensi, dan prestasi kerja"
+        }, {
+            id: 133,
+            question: "Keberhasilan reformasi birokrasi sangat …",
+            options: [
+                "A. Tidak tergantung pada pemimpin",
+                "B. Hanya tergantung pada aturan",
+                "C. Tergantung pada komitmen pemimpin terhadap reformasi",
+                "D. Hanya tergantung pada anggaran"
+            ],
+            correct: 2,
+            explanation: "Tergantung pada komitmen pemimpin terhadap reformasi"
+        }, {
+            id: 134,
+            question: "Reformasi birokrasi di Indonesia sering kali menjadi …",
+            options: [
+                "A. Perubahan yang membudaya",
+                "B. Perubahan yang berkelanjutan",
+                "C. Formalitas prosedural yang belum membudaya",
+                "D. Perubahan yang efektif"
+            ],
+            correct: 2,
+            explanation: "Formalitas prosedural yang belum membudaya"
+        }, {
+            id: 135,
+            question: "Birokrasi masa depan dituntut untuk bersifat …",
+            options: [
+                "A. Kaku dan lambat",
+                "B. Digital, responsif, fleksibel, dan tanpa batas",
+                "C. Tradisional dan hierarkis",
+                "D. Sentralistik dan otoriter"
+            ],
+            correct: 1,
+            explanation: "Digital, responsif, fleksibel, dan tanpa batas"
+        }];
+
+        // ============================================================
+        //  2.  KONFIGURASI & STATE
+        // ============================================================
+        const TOTAL = MASTER_QUESTIONS.length;
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let answers = {};
+        let results = {};
+        let mode = 'all';
+        let selectedCount = 10;
+        let rangeStart = 1;
+        let rangeEnd = TOTAL;
+        let pickedSet = new Set();
+        let darkMode = localStorage.getItem('darkMode') === 'true';
+        let examMode = false;
+
+        // ============================================================
+        //  3.  DOM REFS
+        // ============================================================
+        const $ = id => document.getElementById(id);
+        const setupPanel = $('setupPanel');
+        const questionPanel = $('questionPanel');
+        const resultPanel = $('resultPanel');
+        const reviewPanel = $('reviewPanel');
+        const totalSoalDisplay = $('totalSoalDisplay');
+        const progressText = $('progressText');
+        const correctCount = $('correctCount');
+        const wrongCount = $('wrongCount');
+        const scorePercent = $('scorePercent');
+        const progressFill = $('progressFill');
+        const qNumDisplay = $('qNumDisplay');
+        const qIndexDisplay = $('qIndexDisplay');
+        const questionText = $('questionText');
+        const optionsContainer = $('optionsContainer');
+        const feedback = $('feedback');
+        const feedbackAnswer = $('feedbackAnswer');
+        const feedbackExplanation = $('feedbackExplanation');
+        const nextQuestionBtn = $('nextQuestionBtn');
+        const prevBtn = $('prevBtn');
+        const nextBtn = $('nextBtn');
+        const questionNav = $('questionNav');
+        const startBtn = $('startBtn');
+        const resetBtn = $('resetBtn');
+        const themeToggle = $('themeToggle');
+        const modeOptions = $('modeOptions');
+        const reviewList = $('reviewList');
+        const closeReviewBtn = $('closeReviewBtn');
+        const reviewToggleBtn = $('reviewToggleBtn');
+        const finalScore = $('finalScore');
+        const finalCorrect = $('finalCorrect');
+        const finalWrong = $('finalWrong');
+        const retryWrongBtn = $('retryWrongBtn');
+        const resultResetBtn = $('resultResetBtn');
+        const resultReviewBtn = $('resultReviewBtn');
+        const restartFromQuestionBtn = $('restartFromQuestionBtn');
+
+        // ============================================================
+        //  4.  UTILITY
+        // ============================================================
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function getLetter(i) { return String.fromCharCode(65 + i); }
+
+        // ============================================================
+        //  5.  DARK MODE
+        // ============================================================
+        function applyTheme() {
+            document.documentElement.classList.toggle('dark', darkMode);
+            themeToggle.textContent = darkMode ? '☀️' : '🌙';
+            localStorage.setItem('darkMode', darkMode);
+        }
+        themeToggle.addEventListener('click', () => { darkMode = !darkMode;
+            applyTheme(); });
+        applyTheme();
+
+        // ============================================================
+        //  6.  SETUP UI
+        // ============================================================
+        function renderSetupOptions() {
+            const html = [];
+            if (mode === 'all') {
+                html.push(`<p style="color:var(--text-secondary);">✅ Akan menampilkan seluruh <strong>${TOTAL}</strong> soal.</p>`);
+            }
+            if (mode === 'count') {
+                html.push(`
+                    <label>Jumlah soal:
+                        <select id="countSelect">
+                            ${[5,10,15,20,30,50,75,100].map(n => `<option value="${n}" ${n===selectedCount?'selected':''}>${n}</option>`).join('')}
+                        </select>
+                    </label>
+                `);
+            }
+            if (mode === 'range') {
+                html.push(`
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                        <label>Dari:
+                            <input type="number" id="rangeStart" value="${rangeStart}" min="1" max="${TOTAL}" style="width:70px;">
+                        </label>
+                        <label>Sampai:
+                            <input type="number" id="rangeEnd" value="${rangeEnd}" min="1" max="${TOTAL}" style="width:70px;">
+                        </label>
+                        <span style="font-size:0.85rem;color:var(--text-secondary);">(1-${TOTAL})</span>
+                    </div>
+                `);
+            }
+            if (mode === 'pick') {
+                html.push(`
+                    <div style="display:flex;flex-wrap:wrap;gap:4px;max-height:200px;overflow-y:auto;padding:8px;border:1px solid var(--border);border-radius:8px;">
+                        ${Array.from({length:TOTAL}, (_,i) => {
+                            const num = i+1;
+                            const checked = pickedSet.has(num) ? 'checked' : '';
+                            return `<label style="display:flex;align-items:center;gap:4px;font-size:0.8rem;cursor:pointer;padding:2px 6px;border-radius:4px;background:var(--gray-light);">
+                                <input type="checkbox" value="${num}" ${checked} class="pick-checkbox">
+                                ${num}
+                            </label>`;
+                        }).join('')}
+                    </div>
+                    <div style="margin-top:6px;">
+                        <button class="btn btn-sm btn-outline" id="selectAllPick">Pilih Semua</button>
+                        <button class="btn btn-sm btn-outline" id="deselectAllPick">Hapus Semua</button>
+                    </div>
+                `);
+            }
+            if (mode === 'random') {
+                html.push(`
+                    <label>Jumlah soal acak:
+                        <input type="number" id="randomCount" value="${selectedCount}" min="1" max="${TOTAL}" style="width:80px;">
+                    </label>
+                    <span style="font-size:0.85rem;color:var(--text-secondary);">(maks ${TOTAL})</span>
+                `);
+            }
+            modeOptions.innerHTML = html.join('');
+
+            if (mode === 'count') {
+                const sel = document.getElementById('countSelect');
+                if (sel) sel.addEventListener('change', e => { selectedCount = parseInt(e.target.value) || 10; });
+            }
+            if (mode === 'range') {
+                const s = document.getElementById('rangeStart');
+                const e = document.getElementById('rangeEnd');
+                if (s) s.addEventListener('change', () => { rangeStart = Math.min(parseInt(s.value) || 1, TOTAL); });
+                if (e) e.addEventListener('change', () => { rangeEnd = Math.min(parseInt(e.value) || TOTAL, TOTAL); });
+            }
+            if (mode === 'pick') {
+                document.querySelectorAll('.pick-checkbox').forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        const num = parseInt(cb.value);
+                        if (cb.checked) pickedSet.add(num);
+                        else pickedSet.delete(num);
+                    });
+                });
+                const selAll = document.getElementById('selectAllPick');
+                const deselAll = document.getElementById('deselectAllPick');
+                if (selAll) selAll.addEventListener('click', () => {
+                    document.querySelectorAll('.pick-checkbox').forEach(cb => { cb.checked = true;
+                        pickedSet.add(parseInt(cb.value)); });
+                });
+                if (deselAll) deselAll.addEventListener('click', () => {
+                    document.querySelectorAll('.pick-checkbox').forEach(cb => { cb.checked = false;
+                        pickedSet.delete(parseInt(cb.value)); });
+                });
+            }
+            if (mode === 'random') {
+                const rc = document.getElementById('randomCount');
+                if (rc) rc.addEventListener('change', () => { selectedCount = Math.min(parseInt(rc.value) || 5, TOTAL); });
+            }
+        }
+
+        document.querySelectorAll('#modeTabs .btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#modeTabs .btn').forEach(b => b.classList.remove('active-mode'));
+                btn.classList.add('active-mode');
+                mode = btn.dataset.mode;
+                if (mode !== 'pick') pickedSet.clear();
+                renderSetupOptions();
+            });
+        });
+
+        // ============================================================
+        //  7.  BUILD SOAL (acak opsi + distribusi merata)
+        // ============================================================
+        function buildQuestions(source) {
+            const result = [];
+            const targetPositions = [];
+            for (let i = 0; i < source.length; i++) {
+                targetPositions.push(i % 4);
+            }
+            shuffle(targetPositions);
+
+            for (let i = 0; i < source.length; i++) {
+                const q = source[i];
+                const opts = q.options.slice();
+                const correctText = opts[q.correct];
+                const shuffled = shuffle(opts);
+                const newCorrect = shuffled.indexOf(correctText);
+
+                const targetPos = targetPositions[i % targetPositions.length];
+                const wrongOpts = opts.filter(o => o !== correctText);
+                shuffle(wrongOpts);
+                const newOpts = [];
+                for (let p = 0; p < 4; p++) {
+                    if (p === targetPos) newOpts[p] = correctText;
+                    else newOpts[p] = wrongOpts.pop();
+                }
+                result.push({
+                    id: q.id,
+                    question: q.question,
+                    options: newOpts,
+                    correct: targetPos,
+                    explanation: q.explanation || 'Penjelasan tidak tersedia.'
+                });
+            }
+            return result;
+        }
+
+        // ============================================================
+        //  8.  MULAI LATIHAN
+        // ============================================================
+        function startPractice() {
+            let pool = [];
+            if (mode === 'all') {
+                pool = MASTER_QUESTIONS.slice();
+            } else if (mode === 'count') {
+                const count = Math.min(selectedCount, TOTAL);
+                pool = shuffle(MASTER_QUESTIONS.slice()).slice(0, count);
+            } else if (mode === 'range') {
+                const start = Math.max(1, Math.min(rangeStart, TOTAL));
+                const end = Math.min(Math.max(rangeEnd, start), TOTAL);
+                pool = MASTER_QUESTIONS.slice(start - 1, end);
+            } else if (mode === 'pick') {
+                const ids = Array.from(pickedSet).filter(n => n >= 1 && n <= TOTAL);
+                if (ids.length === 0) { alert('Silakan pilih setidaknya 1 soal.'); return; }
+                pool = ids.map(id => MASTER_QUESTIONS[id - 1]).filter(Boolean);
+            } else if (mode === 'random') {
+                const count = Math.min(selectedCount, TOTAL);
+                pool = shuffle(MASTER_QUESTIONS.slice()).slice(0, count);
+            } else {
+                pool = MASTER_QUESTIONS.slice();
+            }
+            if (pool.length === 0) { alert('Tidak ada soal yang dipilih.'); return; }
+
+            currentQuestions = buildQuestions(pool);
+            shuffle(currentQuestions);
+            answers = {};
+            results = {};
+            currentIndex = 0;
+
+            setupPanel.classList.add('hidden');
+            questionPanel.classList.remove('hidden');
+            resultPanel.classList.add('hidden');
+            reviewPanel.classList.add('hidden');
+
+            renderQuestion();
+            renderNav();
+            updateStats();
+        }
+
+        // ============================================================
+        //  9.  RENDER SOAL
+        // ============================================================
+        function renderQuestion() {
+            const q = currentQuestions[currentIndex];
+            if (!q) return;
+
+            qNumDisplay.textContent = `Soal ${currentIndex + 1}`;
+            qIndexDisplay.textContent = `${currentIndex + 1} / ${currentQuestions.length}`;
+            questionText.textContent = q.question;
+
+            optionsContainer.innerHTML = '';
+            const selected = answers[currentIndex];
+            const isAnswered = selected !== undefined;
+            const isCorrect = results[currentIndex];
+
+            q.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                if (isAnswered) div.classList.add('disabled');
+                if (isAnswered && idx === q.correct) div.classList.add('correct');
+                if (isAnswered && selected === idx && !isCorrect) div.classList.add('wrong');
+                if (isAnswered && selected === idx) div.classList.add('selected');
+
+                const letter = document.createElement('span');
+                letter.className = 'letter';
+                letter.textContent = getLetter(idx);
+
+                const text = document.createElement('span');
+                text.className = 'text';
+                text.textContent = opt;
+
+                div.appendChild(letter);
+                div.appendChild(text);
+
+                if (!isAnswered) {
+                    div.addEventListener('click', () => handleAnswer(idx));
+                }
+                optionsContainer.appendChild(div);
+            });
+
+            feedback.classList.remove('show', 'correct', 'wrong');
+            if (isAnswered) {
+                const isCorrectVal = results[currentIndex];
+                feedback.classList.add('show', isCorrectVal ? 'correct' : 'wrong');
+                const correctLetter = getLetter(q.correct);
+                const correctText = q.options[q.correct];
+                feedbackAnswer.textContent = isCorrectVal ?
+                    `✅ Benar! Jawaban: ${correctLetter}. ${correctText}` :
+                    `❌ Salah. Jawaban yang benar: ${correctLetter}. ${correctText}`;
+                feedbackExplanation.textContent = q.explanation || '';
+                nextQuestionBtn.disabled = false;
+            } else {
+                nextQuestionBtn.disabled = true;
+            }
+
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === currentQuestions.length - 1;
+
+            questionPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            renderNav();
+            updateStats();
+        }
+
+        // ============================================================
+        //  10. HANDLE ANSWER
+        // ============================================================
+        function handleAnswer(idx) {
+            if (answers[currentIndex] !== undefined) return;
+
+            const q = currentQuestions[currentIndex];
+            const isCorrect = idx === q.correct;
+            answers[currentIndex] = idx;
+            results[currentIndex] = isCorrect;
+
+            saveProgress();
+            renderQuestion();
+
+            const optDivs = optionsContainer.querySelectorAll('.option');
+            optDivs.forEach((div, i) => {
+                if (i === q.correct) div.classList.add('correct');
+                if (i === idx && !isCorrect) div.classList.add('wrong');
+                if (i === idx) div.classList.add('selected');
+            });
+
+            if (examMode) {
+                feedback.classList.remove('show');
+                const allAnswered = currentQuestions.every((_, i) => answers[i] !== undefined);
+                if (allAnswered) showResult();
+                renderNav();
+                updateStats();
+                nextQuestionBtn.disabled = false;
+            } else {
+                nextQuestionBtn.disabled = false;
+                updateStats();
+            }
+        }
+
+        // ============================================================
+        //  11. NAVIGASI
+        // ============================================================
+        function goToQuestion(index) {
+            if (index < 0 || index >= currentQuestions.length) return;
+            currentIndex = index;
+            renderQuestion();
+        }
+
+        prevBtn.addEventListener('click', () => goToQuestion(currentIndex - 1));
+        nextBtn.addEventListener('click', () => goToQuestion(currentIndex + 1));
+        nextQuestionBtn.addEventListener('click', () => {
+            if (currentIndex < currentQuestions.length - 1) {
+                goToQuestion(currentIndex + 1);
+            } else {
+                if (examMode) {
+                    showResult();
+                } else {
+                    const allAnswered = currentQuestions.every((_, i) => answers[i] !== undefined);
+                    if (allAnswered) showResult();
+                    else alert('Masih ada soal yang belum dijawab!');
+                }
+            }
+        });
+
+        // ============================================================
+        //  12. NAVIGASI GRID
+        // ============================================================
+        function renderNav() {
+            questionNav.innerHTML = '';
+            currentQuestions.forEach((q, i) => {
+                const span = document.createElement('span');
+                span.className = 'qn';
+                span.textContent = i + 1;
+                if (i === currentIndex) span.classList.add('current');
+                else if (answers[i] !== undefined) {
+                    span.classList.add(results[i] ? 'answered-correct' : 'answered-wrong');
+                }
+                span.addEventListener('click', () => goToQuestion(i));
+                questionNav.appendChild(span);
+            });
+        }
+
+        // ============================================================
+        //  13. STATS
+        // ============================================================
+        function updateStats() {
+            const total = currentQuestions.length;
+            const answered = Object.keys(answers).length;
+            const correct = Object.values(results).filter(v => v === true).length;
+            const wrong = Object.values(results).filter(v => v === false).length;
+            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+            progressText.textContent = `${answered}/${total}`;
+            correctCount.textContent = correct;
+            wrongCount.textContent = wrong;
+            scorePercent.textContent = pct + '%';
+            progressFill.style.width = total > 0 ? `${(answered/total)*100}%` : '0%';
+        }
+
+        // ============================================================
+        //  14. HASIL
+        // ============================================================
+        function showResult() {
+            const total = currentQuestions.length;
+            const correct = Object.values(results).filter(v => v === true).length;
+            const wrong = total - correct;
+            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+            finalScore.textContent = pct + '%';
+            finalCorrect.textContent = correct;
+            finalWrong.textContent = wrong;
+
+            questionPanel.classList.add('hidden');
+            resultPanel.classList.remove('hidden');
+            reviewPanel.classList.add('hidden');
+            saveProgress();
+        }
+
+        // ============================================================
+        //  15. REVIEW
+        // ============================================================
+        function renderReview(filter = 'all') {
+            reviewList.innerHTML = '';
+            let items = currentQuestions.map((q, i) => ({ q, i, answered: answers[i] !== undefined, correct: results[i] }));
+
+            if (filter === 'correct') items = items.filter(it => it.answered && it.correct);
+            else if (filter === 'wrong') items = items.filter(it => it.answered && !it.correct);
+            else if (filter === 'unanswered') items = items.filter(it => !it.answered);
+
+            if (items.length === 0) {
+                reviewList.innerHTML = '<p style="color:var(--text-secondary);padding:12px;">Tidak ada soal dalam kategori ini.</p>';
+                return;
+            }
+
+            items.forEach(({ q, i, answered, correct }) => {
+                const div = document.createElement('div');
+                div.className = 'review-item';
+                const num = document.createElement('span');
+                num.className = 'r-num';
+                num.textContent = i + 1;
+                const qText = document.createElement('span');
+                qText.className = 'r-q';
+                qText.textContent = q.question;
+                const ans = document.createElement('span');
+                ans.className = `r-answer ${answered ? (correct ? 'correct' : 'wrong') : ''}`;
+                if (answered) {
+                    const letter = getLetter(q.correct);
+                    ans.textContent = `✓ ${letter}. ${q.options[q.correct]}`;
+                } else {
+                    ans.textContent = '⏳ Belum dijawab';
+                }
+                div.appendChild(num);
+                div.appendChild(qText);
+                div.appendChild(ans);
+                reviewList.appendChild(div);
+            });
+        }
+
+        reviewToggleBtn.addEventListener('click', () => {
+            if (reviewPanel.classList.contains('hidden')) {
+                reviewPanel.classList.remove('hidden');
+                renderReview('all');
+            } else {
+                reviewPanel.classList.add('hidden');
+            }
+        });
+
+        closeReviewBtn.addEventListener('click', () => { reviewPanel.classList.add('hidden'); });
+
+        document.querySelectorAll('.review-filter .btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.review-filter .btn').forEach(b => b.classList.remove(
+                'active-review-filter'));
+                btn.classList.add('active-review-filter');
+                renderReview(btn.dataset.filter);
+            });
+        });
+
+        // ============================================================
+        //  16. RESET & RETRY
+        // ============================================================
+        function resetAll() {
+            answers = {};
+            results = {};
+            currentQuestions = [];
+            currentIndex = 0;
+            setupPanel.classList.remove('hidden');
+            questionPanel.classList.add('hidden');
+            resultPanel.classList.add('hidden');
+            reviewPanel.classList.add('hidden');
+            localStorage.removeItem('quizProgress');
+            updateStats();
+        }
+
+        resetBtn.addEventListener('click', resetAll);
+        resultResetBtn.addEventListener('click', resetAll);
+        restartFromQuestionBtn.addEventListener('click', () => {
+            if (confirm('Yakin ingin mengulang latihan dari awal? Progress akan direset.')) {
+                resetAll();
+            }
+        });
+
+        retryWrongBtn.addEventListener('click', () => {
+            const wrongIndices = Object.keys(results).filter(k => results[k] === false).map(Number);
+            if (wrongIndices.length === 0) { alert('Tidak ada soal yang salah! 🎉'); return; }
+            const wrongQuestions = wrongIndices.map(i => currentQuestions[i]);
+            currentQuestions = buildQuestions(wrongQuestions);
+            shuffle(currentQuestions);
+            answers = {};
+            results = {};
+            currentIndex = 0;
+            resultPanel.classList.add('hidden');
+            questionPanel.classList.remove('hidden');
+            renderQuestion();
+            renderNav();
+            updateStats();
+        });
+
+        resultReviewBtn.addEventListener('click', () => {
+            resultPanel.classList.add('hidden');
+            reviewPanel.classList.remove('hidden');
+            renderReview('all');
+        });
+
+        // ============================================================
+        //  17. LOCAL STORAGE
+        // ============================================================
+        function saveProgress() {
+            try {
+                const data = {
+                    questions: currentQuestions.map(q => q.id),
+                    answers: answers,
+                    results: results,
+                    index: currentIndex,
+                    mode: mode,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('quizProgress', JSON.stringify(data));
+            } catch (e) { /* ignore */ }
+        }
+
+        function loadProgress() {
+            try {
+                const raw = localStorage.getItem('quizProgress');
+                if (!raw) return false;
+                const data = JSON.parse(raw);
+                if (!data.questions || !data.answers) return false;
+                const ids = data.questions;
+                const valid = ids.every(id => MASTER_QUESTIONS.some(q => q.id === id));
+                if (!valid) return false;
+                const pool = ids.map(id => MASTER_QUESTIONS.find(q => q.id === id)).filter(Boolean);
+                if (pool.length === 0) return false;
+                currentQuestions = buildQuestions(pool);
+                const orderMap = {};
+                data.questions.forEach((id, idx) => { orderMap[id] = idx; });
+                currentQuestions.sort((a, b) => (orderMap[a.id] || 0) - (orderMap[b.id] || 0));
+                answers = data.answers || {};
+                results = data.results || {};
+                currentIndex = Math.min(data.index || 0, currentQuestions.length - 1);
+                Object.keys(answers).forEach(k => {
+                    const idx = parseInt(k);
+                    if (idx >= currentQuestions.length) delete answers[k];
+                });
+                Object.keys(results).forEach(k => {
+                    const idx = parseInt(k);
+                    if (idx >= currentQuestions.length) delete results[k];
+                });
+                return true;
+            } catch (e) { return false; }
+        }
+
+        // ============================================================
+        //  18. INIT
+        // ============================================================
+        function init() {
+            totalSoalDisplay.textContent = TOTAL;
+            renderSetupOptions();
+
+            // exam mode checkbox
+            document.getElementById('examModeCheck').addEventListener('change', function() {
+                examMode = this.checked;
+            });
+
+            const hasProgress = loadProgress();
+            if (hasProgress && currentQuestions.length > 0) {
+                setupPanel.classList.add('hidden');
+                questionPanel.classList.remove('hidden');
+                renderQuestion();
+                renderNav();
+                updateStats();
+                const allAnswered = currentQuestions.every((_, i) => answers[i] !== undefined);
+                if (allAnswered && Object.keys(answers).length > 0) {
+                    showResult();
+                }
+            } else {
+                resetAll();
+            }
+
+            startBtn.addEventListener('click', () => {
+                if (Object.keys(answers).length > 0) {
+                    if (!confirm('Latihan sedang berjalan. Mulai ulang?')) return;
+                }
+                startPractice();
+            });
+
+            document.querySelector('#modeTabs .btn[data-mode="all"]')?.click();
+        }
+
+        init();
+        console.log(`✅ ${TOTAL} soal berhasil dimuat.`);
+    </script>
+</body>
+</html>
